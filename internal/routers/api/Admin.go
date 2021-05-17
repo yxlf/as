@@ -2,6 +2,7 @@ package api
 
 import (
 	"as/pkg/app"
+	"as/pkg/errcode"
 	"github.com/gin-gonic/gin"
 )
 
@@ -9,6 +10,15 @@ type Admin struct{}
 
 // Login 用户登录
 func (Admin) Login(c *gin.Context) {
+	var userName struct {
+		UserName string `form:"username" binding:"max=20,min=6,required"`
+		Password string `form:"password" binding:"max=20,min=6,required"`
+	}
+	err := c.ShouldBind(&userName)
+	if err != nil {
+		app.NewResponse(c).ToErrorResponse(errcode.InvilidParams)
+		return
+	}
 	app.NewResponse(c).ToResponse("憨批一个")
 	return
 }
@@ -23,7 +33,6 @@ func (Admin) Login(c *gin.Context) {
 // @Failure 500 {object} errcode.Error "内部错误"
 // @Router /api/api/admin/logout [get]
 func (Admin) Logout(c *gin.Context) {
-
 	app.NewResponse(c).ToResponse("sfa")
 }
 
