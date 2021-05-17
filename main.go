@@ -30,6 +30,10 @@ func init() {
 	}
 }
 
+// @title 工资绩效系统
+// @version 1.0
+// @description 工资绩效系统项目
+// @termsOfService https://github.com/go-programming-tour-book
 func main() {
 	global.Logger.Info("错误")
 	gin.SetMode(global.ServerSetting.RunMode)
@@ -56,7 +60,7 @@ func setupSetting() error {
 	}
 	err = setting.ReadSection("App", &global.AppSetting)
 	if err != nil {
-		return nil
+		return err
 	}
 	err = setting.ReadSection("Database", &global.DatabaseSetting)
 	if err != nil {

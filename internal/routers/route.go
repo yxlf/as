@@ -1,8 +1,11 @@
 package routers
 
 import (
+	_ "as/docs"
 	"as/internal/routers/api"
 	"github.com/gin-gonic/gin"
+	swaggerFiles "github.com/swaggo/files"
+	ginSwagger "github.com/swaggo/gin-swagger"
 )
 
 func NewRouter() *gin.Engine {
@@ -19,5 +22,6 @@ func NewRouter() *gin.Engine {
 			adminControl.GET("test", admin.Login)
 		}
 	}
+	r.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
 	return r
 }
