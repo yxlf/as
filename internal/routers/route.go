@@ -16,6 +16,7 @@ func NewRouter() *gin.Engine {
 			adminControl.POST("login", admin.Login)
 			adminControl.POST("logout", admin.Logout)
 			adminControl.POST("fresh", admin.Fresh)
+			adminControl.GET("test", admin.Login)
 		}
 	}
 	return r
