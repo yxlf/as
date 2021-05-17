@@ -22,6 +22,8 @@ func NewRouter() *gin.Engine {
 			adminControl.GET("test", admin.Login)
 		}
 	}
+
 	r.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
+	r.Use()
 	return r
 }

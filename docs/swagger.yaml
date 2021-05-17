@@ -1,0 +1,42 @@
+definitions:
+  errcode.Error:
+    type: object
+info:
+  contact: {}
+  description: 工资绩效系统项目
+  termsOfService: https://github.com/go-programming-tour-book
+  title: 工资绩效系统
+  version: "1.0"
+paths:
+  /api/api/admin/logout:
+    get:
+      parameters:
+      - description: 用户名
+        in: body
+        name: name
+        required: true
+        schema:
+          type: string
+      - description: 密码
+        in: body
+        name: password
+        required: true
+        schema:
+          type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 请求成功
+          schema:
+            $ref: '#/definitions/errcode.Error'
+        "400":
+          description: 请求失败
+          schema:
+            $ref: '#/definitions/errcode.Error'
+        "500":
+          description: 内部错误
+          schema:
+            $ref: '#/definitions/errcode.Error'
+      summary: 用户登录
+swagger: "2.0"
