@@ -4,8 +4,8 @@ import (
 	"as/global"
 	"as/pkg/setting"
 	"fmt"
-	_ "github.com/go-sql-driver/mysql"
 	"github.com/jinzhu/gorm"
+	_ "github.com/jinzhu/gorm/dialects/mysql"
 )
 
 type Model struct {
