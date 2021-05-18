@@ -20,3 +20,7 @@ Database:
   ParseTime: true
   MaxIdleConns: 10
   MaxOpenConns: 30
+JWT:
+  Secret: weij02
+  Issuer: as-service
+  Expire: 7200

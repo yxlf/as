@@ -24,6 +24,5 @@ func NewRouter() *gin.Engine {
 	}
 
 	r.GET("/swagger/*any", ginSwagger.WrapHandler(swaggerFiles.Handler))
-	r.Use()
 	return r
 }

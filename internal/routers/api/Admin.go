@@ -16,7 +16,7 @@ func (Admin) Login(c *gin.Context) {
 	}
 	err := c.ShouldBind(&userName)
 	if err != nil {
-		app.NewResponse(c).ToErrorResponse(errcode.InvilidParams)
+		app.NewResponse(c).ToErrorResponse(errcode.InvilidParams.WithDetails(err.Error()))
 		return
 	}
 	app.NewResponse(c).ToResponse("憨批一个")

@@ -6,9 +6,13 @@ import (
 	"fmt"
 	"github.com/jinzhu/gorm"
 	_ "github.com/jinzhu/gorm/dialects/mysql"
+	"time"
 )
 
 type Model struct {
+	ID        uint64    `json:"id"`
+	CreateAt  time.Time `json:"create_at"`
+	UpdatedAt time.Time `json:"updated_at"`
 }
 
 func NewDBEngine(databaseSetting *setting.DatabaseSettingS) (*gorm.DB, error) {
