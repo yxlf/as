@@ -34,5 +34,6 @@ func GetAuth(c *gin.Context) {
 		response.ToErrorResponse(errcode.UnauthorizedTokenGenerate)
 		return
 	}
+
 	response.ToResponse(gin.H{"token": token})
 }
