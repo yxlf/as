@@ -20,6 +20,7 @@ func NewRouter() *gin.Engine {
 			adminControl.POST("logout", admin.Logout)
 			adminControl.POST("fresh", admin.Fresh)
 			adminControl.GET("test", admin.Login)
+			adminControl.GET("auth", api.GetAuth)
 		}
 	}
 
