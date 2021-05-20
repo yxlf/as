@@ -8,6 +8,33 @@ info:
   title: 工资绩效系统
   version: "1.0"
 paths:
+  /api/admin/auth:
+    get:
+      parameters:
+      - description: key
+        in: body
+        name: app_key
+        required: true
+        schema:
+          type: string
+      - description: secret
+        in: body
+        name: app_secret
+        required: true
+        schema:
+          type: string
+      produces:
+      - application/json
+      responses:
+        "200":
+          description: 请求成功
+          schema:
+            $ref: '#/definitions/errcode.Error'
+        "500":
+          description: 服务器内部错误
+          schema:
+            $ref: '#/definitions/errcode.Error'
+      summary: 获取token
   /api/api/admin/logout:
     get:
       parameters:

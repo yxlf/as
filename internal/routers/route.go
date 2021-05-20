@@ -2,6 +2,7 @@ package routers
 
 import (
 	_ "as/docs"
+	"as/internal/middleware"
 	"as/internal/routers/api"
 	"github.com/gin-gonic/gin"
 	swaggerFiles "github.com/swaggo/files"
@@ -17,7 +18,7 @@ func NewRouter() *gin.Engine {
 		{
 			admin := api.NewAdmin()
 			adminControl.POST("login", admin.Login)
-			adminControl.POST("logout", admin.Logout)
+			adminControl.Use(middleware.JWT()).POST("logout", admin.Logout)
 			adminControl.POST("fresh", admin.Fresh)
 			adminControl.GET("test", admin.Login)
 			adminControl.GET("auth", api.GetAuth)
