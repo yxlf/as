@@ -26,7 +26,7 @@ func init() {
 
 	err = setupLogger()
 	if err != nil {
-		log.Fatalf("init.setupDBEngine err:%v", err)
+		log.Fatalf("init.setupLogger err:%v", err)
 	}
 }
 

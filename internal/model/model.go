@@ -11,7 +11,7 @@ import (
 
 type Model struct {
 	ID        uint64    `json:"id"`
-	CreateAt  time.Time `json:"create_at"`
+	CreatedAt time.Time `json:"created_at"`
 	UpdatedAt time.Time `json:"updated_at"`
 }
 

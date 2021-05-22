@@ -9,6 +9,7 @@ import (
 type Admin struct{}
 
 // Login 用户登录
+// @Summary 用户登录
 func (Admin) Login(c *gin.Context) {
 	var userName struct {
 		UserName string `form:"username" binding:"max=20,min=6,required"`

@@ -12,16 +12,18 @@ import (
 func NewRouter() *gin.Engine {
 	r := gin.New()
 	r.Use(gin.Logger(), gin.Recovery())
+
 	backend := r.Group("api")
 	{
-		adminControl := backend.Group("admin")
+		// 获取token
+		backend.GET("admin/auth", api.GetAuth)
+
+		//用户管理
+		adminControl := backend.Group("admin").Use(middleware.JWT())
 		{
-			admin := api.NewAdmin()
-			adminControl.POST("login", admin.Login)
-			adminControl.Use(middleware.JWT()).POST("logout", admin.Logout)
-			adminControl.POST("fresh", admin.Fresh)
-			adminControl.GET("test", admin.Login)
-			adminControl.GET("auth", api.GetAuth)
+			// 新增门店
+			store := api.NewStore()
+			adminControl.POST("store", store.Store)
 		}
 	}
 

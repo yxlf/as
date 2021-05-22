@@ -3,6 +3,7 @@ package middleware
 import (
 	"as/pkg/app"
 	"as/pkg/errcode"
+	"fmt"
 	"github.com/dgrijalva/jwt-go"
 	"github.com/gin-gonic/gin"
 )
@@ -21,7 +22,9 @@ func JWT() gin.HandlerFunc {
 		if token == "" {
 			ecode = errcode.InvilidParams
 		} else {
-			_, err := app.ParseToken(token)
+			claim, err := app.ParseToken(token)
+			fmt.Printf("%v", claim)
+
 			if err != nil {
 				switch err.(*jwt.ValidationError).Errors {
 				case jwt.ValidationErrorExpired:

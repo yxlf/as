@@ -12,7 +12,7 @@ import (
 // @Produce json
 // @Param app_key body string true "key"
 // @Param app_secret body string true "secret"
-// @Success 200 {object} errcode.Error "请求成功"
+// @Success 200 {object}  "请求成功"
 // @Failure 500 {object} errcode.Error "服务器内部错误"
 // @Router /api/admin/auth [get]
 func GetAuth(c *gin.Context) {

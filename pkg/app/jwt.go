@@ -2,8 +2,9 @@ package app
 
 import (
 	"as/global"
-	"as/internal/dao/encryption"
+	"fmt"
 	"github.com/dgrijalva/jwt-go"
+	"golang.org/x/crypto/bcrypt"
 	"time"
 )
 
@@ -20,9 +21,10 @@ func GetJWTSecret() string {
 func GenerateToken(appKey, appSecret string) (string, error) {
 	now := time.Now()
 	expireTime := now.Add(global.JWTSetting.Expire)
+	password, _ := bcrypt.GenerateFromPassword([]byte(appSecret), bcrypt.MinCost)
 	claims := Claims{
-		AppKey:    encryption.MD5(appKey),
-		AppSecret: encryption.MD5(appSecret),
+		AppKey:    appKey,
+		AppSecret: string(password),
 		StandardClaims: jwt.StandardClaims{
 			ExpiresAt: expireTime.Unix(),
 			Issuer:    global.JWTSetting.Issuer,
@@ -42,6 +44,6 @@ func ParseToken(token string) (*Claims, error) {
 			return claims, nil
 		}
 	}
-
+	fmt.Println(tokenClaims.Claims.(*Claims).Issuer)
 	return nil, err
 }
