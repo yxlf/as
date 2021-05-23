@@ -30,3 +30,9 @@ func (s StrTo) MustUint32() uint32 {
 	v, _ := s.Uint32()
 	return v
 }
+
+func (s StrTo) Uint64() (res uint64, err error) {
+	atoi, err := strconv.Atoi(s.String())
+	res = uint64(atoi)
+	return
+}

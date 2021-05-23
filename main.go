@@ -4,6 +4,7 @@ import (
 	"as/global"
 	"as/internal/model"
 	"as/internal/routers"
+	_ "as/internal/validator"
 	"as/pkg/logger"
 	setting2 "as/pkg/setting"
 	"fmt"

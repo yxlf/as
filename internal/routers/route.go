@@ -2,7 +2,6 @@ package routers
 
 import (
 	_ "as/docs"
-	"as/internal/middleware"
 	"as/internal/routers/api"
 	"github.com/gin-gonic/gin"
 	swaggerFiles "github.com/swaggo/files"
@@ -19,11 +18,19 @@ func NewRouter() *gin.Engine {
 		backend.GET("admin/auth", api.GetAuth)
 
 		//用户管理
-		adminControl := backend.Group("admin").Use(middleware.JWT())
+		adminControl := backend.Group("admin") /*.Use(middleware.JWT())*/
 		{
-			// 新增门店
 			store := api.NewStore()
+			// 新增门店
 			adminControl.POST("store", store.Store)
+			// 删除门店
+			adminControl.DELETE("store/:id", store.Delete)
+			// 获取门店
+			adminControl.GET("store/:id", store.Get)
+			// 门店列表
+			adminControl.GET("store", store.Index)
+			// 编辑门店
+			adminControl.PUT("store/:id", store.Update)
 		}
 	}
 

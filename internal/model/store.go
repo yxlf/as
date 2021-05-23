@@ -1,5 +1,7 @@
 package model
 
+import "github.com/jinzhu/gorm"
+
 type Store struct {
 	*Model
 	Name                 string  `json:"name" form:"name" binding:"required,max=20,min=6"`
@@ -12,4 +14,19 @@ type Store struct {
 
 func (s Store) TableName() string {
 	return "stores"
+}
+
+func (s Store) Get(db *gorm.DB) (*Store, error) {
+	err := db.Where(&s).First(&s).Error
+	if err != nil {
+		return nil, err
+	}
+	return &s, nil
+}
+func (s Store) Delete(db *gorm.DB) error {
+	err := db.Select([]interface{}{"id"}).Delete(&s).Error
+	if err != nil {
+		return err
+	}
+	return nil
 }
