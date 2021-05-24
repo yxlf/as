@@ -20,17 +20,25 @@ func NewRouter() *gin.Engine {
 		//用户管理
 		adminControl := backend.Group("admin") /*.Use(middleware.JWT())*/
 		{
-			store := api.NewStore()
-			// 新增门店
-			adminControl.POST("store", store.Store)
-			// 删除门店
-			adminControl.DELETE("store/:id", store.Delete)
-			// 获取门店
-			adminControl.GET("store/:id", store.Get)
-			// 门店列表
-			adminControl.GET("store", store.Index)
-			// 编辑门店
-			adminControl.PUT("store/:id", store.Update)
+			{
+				store := api.NewStore()
+				// 新增门店
+				adminControl.POST("store", store.Store)
+				// 删除门店
+				adminControl.DELETE("store/:id", store.Delete)
+				// 获取门店
+				adminControl.GET("store/:id", store.Get)
+				// 门店列表
+				adminControl.GET("store", store.Index)
+				// 编辑门店
+				adminControl.PUT("store/:id", store.Update)
+			}
+			{
+				work := api.NewWork()
+				adminControl.POST("work", work.Store)
+				adminControl.GET("work", work.Index)
+				adminControl.DELETE("work/:id", work.Delete)
+			}
 		}
 	}
 
